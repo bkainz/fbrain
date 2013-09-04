@@ -121,11 +121,7 @@ inline bool btkFloatingEqual(float a, float b, float epsilon=FLT_EPSILON)
 // Usefull macros
 //-------------------------------------------------------------------------------------------------------------------
 
-#define btkGetMacro(name, type)                                   \
-virtual type Get##name () const                                   \
-{                                                                 \
-    return this->m_##name;                                        \
-}
+#define btkGetMacro(name, type) virtual type Get##name () const { return this->m_##name;};
 
 //-------------------------------------------------------------------------------------------------------------------
 

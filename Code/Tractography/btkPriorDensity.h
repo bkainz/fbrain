@@ -40,6 +40,14 @@
 #include "btkMacro.h"
 #include "btkGradientDirection.h"
 
+#if WIN32
+        /**
+         * @brief Precomputed constant.
+         */
+	#define m_2pi 6.283185307179586;
+#endif
+
+
 namespace btk
 {
 
@@ -90,11 +98,12 @@ class PriorDensity
          * @brief Concentration parameter.
          */
         double m_Concentration;
-
+#ifndef WIN32
         /**
          * @brief Precomputed constant.
          */
         static const double m_2pi = 6.283185307179586;
+#endif
 
         /**
          * @brief Precomputed normalization constant.
@@ -115,6 +124,7 @@ class PriorDensity
          * @brief Precomputed constant.
          */
         double m_InverseConcentration;
+
 };
 
 } // namespace btk

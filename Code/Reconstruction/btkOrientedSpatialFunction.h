@@ -118,9 +118,9 @@ public:
 
     ArrayType sigma;
 
-    sigma[0] = sqrt(m_Spacing[0]*m_Spacing[0]/(8*log(2)));
-    sigma[1] = sqrt(m_Spacing[1]*m_Spacing[1]/(8*log(2)));
-    sigma[2] = sqrt(m_Spacing[2]*m_Spacing[2]/(8*log(2)));
+    sigma[0] = sqrt(m_Spacing[0]*m_Spacing[0]/(8*log(2.0)));
+    sigma[1] = sqrt(m_Spacing[1]*m_Spacing[1]/(8*log(2.0)));
+    sigma[2] = sqrt(m_Spacing[2]*m_Spacing[2]/(8*log(2.0)));
 
     m_Gaussian -> SetSigma( sigma );
 

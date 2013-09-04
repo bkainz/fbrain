@@ -137,7 +137,15 @@ int main(int argc, char *argv[])
         points->BuildLinks();
         int N = points->GetNumberOfPoints();
 
-        double dist[N][3];
+       
+#if WIN32
+		double** dist;
+		dist = new double*[N];
+		for(int i = 0; i < N; ++i)
+			dist[i] = new double[3];
+#else
+		double dist[N][3];
+#endif
         double projection[3];
         double initial[3];
         std::vector<double> distance;

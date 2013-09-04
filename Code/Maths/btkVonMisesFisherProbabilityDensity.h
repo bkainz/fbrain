@@ -41,7 +41,6 @@
 #include "btkProbabilityDensity.h"
 #include "btkGradientDirection.h"
 
-
 namespace btk
 {
 /**
@@ -109,11 +108,12 @@ class VonMisesFisherProbabilityDensity : public ProbabilityDensity< GradientDire
          */
         double m_Kappa;
 
+#ifndef WIN32
         /**
          * @brief Precomputed constant.
          */
         static const double m_2pi = 6.283185307179586;
-
+#endif 
         /**
          * @brief Precomputed normalization constant.
          */

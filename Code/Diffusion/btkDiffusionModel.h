@@ -36,6 +36,9 @@
 #ifndef BTK_DIFFUSION_MODEL_H
 #define BTK_DIFFUSION_MODEL_H
 
+#define _USE_MATH_DEFINES
+#include <cmath>
+
 // STL includes
 #include "vector"
 

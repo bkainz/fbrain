@@ -45,6 +45,10 @@
 #include "btkDiffusionModel.h"
 #include "btkDiffusionSignal.h"
 
+#if WIN32
+        static const double m_2pi = 6.283185307179586;
+#endif
+
 namespace btk
 {
 
@@ -126,10 +130,12 @@ class ImportanceDensity
          */
         double m_AngleThreshold;
 
+#ifndef WIN32
         /**
          * @brief Precomputed constant.
          */
         static const double m_2pi = 6.283185307179586;
+#endif
 };
 
 } // namespace btk

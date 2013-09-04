@@ -37,6 +37,10 @@
 
 
 // STL includes
+#define _USE_MATH_DEFINES
+#include <cmath>
+#include <math.h>
+#include <cstdlib>
 #include "numeric"
 
 
@@ -56,7 +60,7 @@ void NadarayaWatsonReconstructionErrorFunction::ActivateParameters(unsigned int 
     unsigned int index3 = index + m_TwoTimeNumberOfParameters;
 
     #pragma omp parallel for default(shared) schedule(dynamic)
-    for(unsigned int j = 0; j < m_NumberOfVectors; j++)
+    for(int j = 0; j < m_NumberOfVectors; j++)
     {
         (*m_CurrentParameters)(index, j) = (*m_InputParameters)(index,j);
         (*m_CurrentParameters)(index2,j) = (*m_InputParameters)(index2,j);
@@ -74,7 +78,7 @@ void NadarayaWatsonReconstructionErrorFunction::DesactivateParameters(unsigned i
     unsigned int index3 = index + m_TwoTimeNumberOfParameters;
 
     #pragma omp parallel for default(shared) schedule(dynamic)
-    for(unsigned int j = 0; j < m_NumberOfVectors; j++)
+    for(int j = 0; j < m_NumberOfVectors; j++)
     {
         (*m_CurrentParameters)(index, j) = 0;
         (*m_CurrentParameters)(index2,j) = 0;

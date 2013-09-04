@@ -38,7 +38,7 @@
 namespace btk
 {
 
-GaussianPSF::GaussianPSF():Superclass::PSF()
+GaussianPSF::GaussianPSF() : PSF()
 {
     m_PsfImage = ImageType::New();
 

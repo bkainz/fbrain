@@ -41,6 +41,11 @@
  * @brief Compute diffusion scalar.
  */
 
+#define _USE_MATH_DEFINES
+#include <cmath>
+#include <math.h>
+#include <cstdlib>
+
 // TCLAP includes
 #include <tclap/CmdLine.h>
 
@@ -380,7 +385,7 @@ int main(int argc, char * argv[])
                     // Compute variance (approximation of GA)
                     double GA = (1.0/3.0) * (gentr(adcResponse) - (1.0/3.0));
 
-                    if(std::isnan(GA))
+                    if(/*std::isnan(GA)*/ GA != GA)
                     {
                         GA = 0.0;
                     }
@@ -432,7 +437,7 @@ int main(int argc, char * argv[])
                     // Compute variance
                     double MSD = (1.0/3.0) * (gentr(adcResponse));
 
-                    if(std::isnan(MSD))
+                    if(/*std::isnan(MSD)*/ MSD != MSD)
                     {
                         MSD = 0.0;
                     }
@@ -484,7 +489,7 @@ int main(int argc, char * argv[])
                     // Compute the GFA
                     double GFA = std::sqrt( (response.size() * variance) / ((response.size()-1) * meanSq) );
 
-                    if(std::isnan(GFA))
+                    if(/*std::isnan(GFA)*/ GFA != GFA)
                     {
                         GFA = 0.0;
                     }

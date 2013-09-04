@@ -91,7 +91,7 @@ void GreedyFeatureSelectionAlgorithm::Update()
         double oldCost = minCost;
 
         #pragma omp parallel for default(shared) schedule(dynamic)
-        for(unsigned int i = 0; i < numberOfParameters; i++)
+        for(int i = 0; i < numberOfParameters; i++)
         {
             if(w(i) != 1) // do not check already activated paramters
             {

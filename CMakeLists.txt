@@ -6,11 +6,18 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 # Parallel computing
 OPTION(USE_OMP "Use OpenMP" ON)
 IF(USE_OMP)
-    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp")
+	FIND_PACKAGE( OpenMP REQUIRED)
+	if(OPENMP_FOUND)
+	message("OPENMP FOUND")
+	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
+	endif()
+  #  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp")
 ENDIF(USE_OMP)
 
 # Warning mask
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wno-gnu -Wno-deprecated")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werro -Wno-gnu -Wno-deprecated")
 
 # Testing
 OPTION(BUILD_TESTING "Build testing applications" OFF)

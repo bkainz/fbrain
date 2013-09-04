@@ -133,11 +133,11 @@ int main(int argc, char *argv[])
       itkImage::SpacingType itkSpacing;
       
       if( size.size() == Dimension )
-        for(uint i=0; i<Dimension; i++)
+        for(unsigned int  i=0; i<Dimension; i++)
           itkSize[i] = size[i];
           
       if( spacing.size() == Dimension )
-        for(uint i=0; i<Dimension; i++)
+        for(unsigned int  i=0; i<Dimension; i++)
           itkSpacing[i] = spacing[i];
           
       //Now, check if size or spacing is empty to automatically provide good size/spacing.
@@ -151,11 +151,11 @@ int main(int argc, char *argv[])
       std::cout<<"Spacing of the input image: "<<itkInputSpacing[0]<<" "<<itkInputSpacing[1]<<" "<<itkInputSpacing[2]<<" \n";
                  
       if( size.size() < Dimension ){
-        for(uint i=0; i<Dimension; i++)
+        for(unsigned int  i=0; i<Dimension; i++)
           itkSize[i] = itkInputSize[i] * itkInputSpacing[i] / itkSpacing[i] ;        
       }    
       else
-        for(uint i=0; i<Dimension; i++)
+        for(unsigned int  i=0; i<Dimension; i++)
           itkSpacing[i] = itkInputSize[i] * itkInputSpacing[i] / itkSize[i] ;        
       
       std::cout<<"Size of the output image: "<<itkSize[0]<<" "<<itkSize[1]<<" "<<itkSize[2]<<" \n";

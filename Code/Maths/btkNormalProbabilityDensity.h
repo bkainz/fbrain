@@ -41,6 +41,10 @@
 #include "btkMacro.h"
 #include "btkProbabilityDensity.h"
 
+#if WIN32 //only integral types can be initialized that way within a class
+static const double m_sqrt2pi = 2.506628274631000;
+static const double m_2pi = 6.283185307179586;
+#endif
 
 namespace btk
 {
@@ -109,6 +113,7 @@ class NormalProbabilityDensity : public ProbabilityDensity< double >
          */
         double m_Sigma;
 
+#ifndef WIN32
         /**
          * @brief Precomputed constant.
          */
@@ -118,7 +123,7 @@ class NormalProbabilityDensity : public ProbabilityDensity< double >
          * @brief Precomputed constant.
          */
         static const double m_2pi = 6.283185307179586;
-
+#endif
         /**
          * @brief Precomputed normalization constant.
          */

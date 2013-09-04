@@ -184,7 +184,7 @@ int main( int argc, char * argv[] )
         unsigned int i;
 
         #pragma omp parallel for private(i) schedule(dynamic)
-        for(unsigned int i=1; i<B0.size(); i++ )
+        for(int i=1; i<B0.size(); i++ )
         {
             AffineRegistration::Pointer registration = AffineRegistration::New();
             ResampleImageFilter::Pointer resampler = ResampleImageFilter::New();

@@ -118,7 +118,7 @@ int main ( int argc, char *argv[] )
   Image4DType::SizeType input4DSize = input4DRegion.GetSize();  
   Image4DType::IndexType index = input4DRegion.GetIndex();
   
-  uint numberOf3Dimages = input4DSize[3];
+  unsigned int numberOf3Dimages = input4DSize[3];
   
   // Number of fibers
   float number_fiber = bundle->GetNumberOfLines();

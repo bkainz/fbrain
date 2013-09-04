@@ -38,7 +38,7 @@
 namespace btk
 {
 //-------------------------------------------------------------------------------------------------
-HybridPSF::HybridPSF():Superclass::PSF()
+HybridPSF::HybridPSF() : PSF()
 {
 
     m_PsfImage = ImageType::New();

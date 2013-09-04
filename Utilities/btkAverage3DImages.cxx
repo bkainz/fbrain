@@ -101,7 +101,7 @@ int main (int argc, char* argv[])
   varianceImage->FillBuffer(0); 
 
   int x,y,z;
-  uint n = anatomicalImages.size();
+  unsigned int  n = anatomicalImages.size();
 
   #pragma omp parallel for private(x,y,z) schedule(dynamic)
   for(z=0; z < (int)size[2]; z++)
@@ -117,7 +117,7 @@ int main (int argc, char* argv[])
         float m2= 0;
         float val = 0;
 
-        for(uint i=0; i < n; i++){
+        for(unsigned int i=0; i < n; i++){
             val = anatomicalImages[i]->GetPixel(p);
             m += val;
             m2+= val*val;

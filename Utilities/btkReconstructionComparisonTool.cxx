@@ -104,7 +104,7 @@ int main( int argc, char *argv[] )
   outputImage->FillBuffer(0);    
 
   std::vector<double> counter(numberOfImages+1);
-  for(uint i = 0; i<numberOfImages+1; i++)
+  for(unsigned int i = 0; i<numberOfImages+1; i++)
     counter[i] = 0;
   double numberOfVoxels = 0;
     
@@ -113,10 +113,10 @@ int main( int argc, char *argv[] )
   for(itref.GoToBegin(); !itref.IsAtEnd(); ++itref){
     index = itref.GetIndex();
     PixelType outputValue = 1; //best image is set to one 
-    PixelType minError = fabs(itref.Get() - inputImages[0]->GetPixel(index));  
+    PixelType minError = fabs((double)(itref.Get() - inputImages[0]->GetPixel(index)));  
     
     for (unsigned int i = 1; i<numberOfImages; i++){
-      PixelType error = fabs(itref.Get() - inputImages[i]->GetPixel(index));
+      PixelType error = fabs((double)(itref.Get() - inputImages[i]->GetPixel(index)));
       if(error == minError){
         outputValue = 0;
       }
@@ -130,7 +130,7 @@ int main( int argc, char *argv[] )
     outputImage->SetPixel(index,outputValue);
   }
   
-  for(uint i = 0; i<numberOfImages+1; i++){
+  for(unsigned int i = 0; i<numberOfImages+1; i++){
     std::cout<<"percentage of voxels with label "<<i<<": "<<counter[i]/numberOfVoxels*100<<"\n";
   }
     

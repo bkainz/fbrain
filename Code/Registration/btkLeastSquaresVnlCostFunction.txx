@@ -450,14 +450,14 @@ LeastSquaresVnlCostFunction<TImage>::Initialize()
   unsigned int ncols = m_OutputImageRegion.GetNumberOfPixels();
 
   unsigned int nrows = 0;
-  for(unsigned int im = 0; im < m_Images.size(); im++)
+  for(int im = 0; im < m_Images.size(); im++)
     nrows += m_Regions[im].GetNumberOfPixels();
 
   H.set_size(nrows, ncols);
   Y.set_size(nrows);
   Y.fill(0.0);
 
-  unsigned int im;
+  int im;
   #pragma omp parallel for private(im) schedule(dynamic)
 
   for(im = 0; im < m_Images.size(); im++)

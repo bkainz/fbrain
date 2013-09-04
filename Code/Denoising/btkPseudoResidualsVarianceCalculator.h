@@ -48,6 +48,11 @@
 #include "btkMacro.h"
 #include "btkDiffusionSignal.h"
 
+#if WIN32
+        static const double m_1over6 = 0.166666666666667;
+
+        static const double m_sqrt6over7 = 0.925820099772551;
+#endif
 
 namespace btk
 {
@@ -145,6 +150,7 @@ class PseudoResidualsVarianceCalculator : public itk::Object
          */
         std::vector< double > m_PseudoResidualsStdDeviation;
 
+#ifndef WIN32
         /**
          * @brief Precomputed constant.
          */
@@ -154,6 +160,7 @@ class PseudoResidualsVarianceCalculator : public itk::Object
          * @brief Precomputed constant.
          */
         static const double m_sqrt6over7 = 0.925820099772551;
+#endif
 };
 
 }

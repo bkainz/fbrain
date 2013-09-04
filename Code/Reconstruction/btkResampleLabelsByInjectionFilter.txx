@@ -164,7 +164,7 @@ ResampleLabelsByInjectionFilter<TInputImage,TOutputImage,TInterpolatorPrecisionT
   // Image of weights
   wtImage.resize( m_NumberOfClasses + 1 );
 
-  unsigned int im;
+  int im;
 
   // FIXME The last image ( wtImage[m_NumberOfClasses] ) is used to put the sum
   // (for normalization)
@@ -198,6 +198,7 @@ ResampleLabelsByInjectionFilter<TInputImage,TOutputImage,TInterpolatorPrecisionT
   ArrayType sigma;
   double cst = 2*sqrt(2*log(2.0));
 
+  {
   #pragma omp parallel for private(im) schedule(dynamic)
 
   for(im = 0; im < m_ImageArray.size(); im++)
@@ -349,6 +350,7 @@ ResampleLabelsByInjectionFilter<TInputImage,TOutputImage,TInterpolatorPrecisionT
 
     }
 
+  }
   }
 
   // Normalization

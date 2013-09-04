@@ -116,7 +116,7 @@ double LikelihoodDensity::Evaluate(GradientDirection vk, PhysicalPoint xk, Gradi
         density += this->EvaluateNormalCenteredLogDensity(pseudoResidualsStdDeviation[i], mesuredSignal - estimatedSignal);
     } // for i
 
-    return density - std::log(g.size());
+    return density - std::log((double)(g.size()));
 }
 
 //----------------------------------------------------------------------------------------

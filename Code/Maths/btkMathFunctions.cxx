@@ -103,7 +103,7 @@ int MathFunctions::Sinc(int _x)
     }
     else
     {
-        return (sin(_x)/_x);
+        return (sin((double)_x)/(double)_x);
     }
 }
 } // namespace btk

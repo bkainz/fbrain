@@ -54,7 +54,7 @@
 //#include "interp_rbf_nr.h"
 #include "btkRBFInterpolation.h"
 
-#include "ANN.h"
+#include "ANN/ANN.h"
 
 namespace btk
 {

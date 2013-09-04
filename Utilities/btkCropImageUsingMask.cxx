@@ -59,6 +59,9 @@
 #include "iostream"
 #include <tclap/CmdLine.h>
 
+#if WIN32
+typedef unsigned int uint;
+#endif 
 
 // Definitions
 typedef itk::ExtractImageFilter< btk::DiffusionSequence,itk::Image< short,3 > > ExtractImageFilter;
@@ -260,31 +263,41 @@ int main(int argc, char * argv[])
             {
                 btkCoutMacro("Pixel type: Scalar");
 
-                switch(imageIO->GetComponentType())
-                {
-                    case itk::ImageIOBase::SHORT:
-                        btkCoutMacro("Scalar type: Short");
-                        Process< itk::Image< short,3 >,itk::Image< unsigned char,3 > >(inputFileNames, outputFileNames, maskFileNames, Dimension);
-                        break;
+				switch(imageIO->GetComponentType())
+				{
+				case itk::ImageIOBase::UCHAR:
+					btkCoutMacro("Scalar type: Short");
+					Process< itk::Image< unsigned char ,3 >,itk::Image< unsigned char,3 > >(inputFileNames, outputFileNames, maskFileNames, Dimension);
+					break;
 
-                    case itk::ImageIOBase::USHORT:
-                        btkCoutMacro("Scalar type: Unsigned Short");
-                        Process< itk::Image< unsigned short,3 >,itk::Image< unsigned char,3 > >(inputFileNames, outputFileNames, maskFileNames,Dimension);
-                        break;
+				case itk::ImageIOBase::CHAR:
+					btkCoutMacro("Scalar type: Short");
+					Process< itk::Image< char ,3 >,itk::Image< unsigned char,3 > >(inputFileNames, outputFileNames, maskFileNames, Dimension);
+					break;
 
-                    case itk::ImageIOBase::FLOAT:
-                        btkCoutMacro("Scalar type: Float");
-                        Process< itk::Image< float,3 >,itk::Image< unsigned char,3 > >(inputFileNames, outputFileNames, maskFileNames,Dimension);
-                        break;
+				case itk::ImageIOBase::SHORT:
+					btkCoutMacro("Scalar type: Short");
+					Process< itk::Image< short,3 >,itk::Image< unsigned char,3 > >(inputFileNames, outputFileNames, maskFileNames, Dimension);
+					break;
 
-                    case itk::ImageIOBase::DOUBLE:
-                        btkCoutMacro("Scalar type: Double");
-                        Process< itk::Image< double,3 >,itk::Image< unsigned char,3 > >(inputFileNames, outputFileNames, maskFileNames,Dimension);
-                        break;
+				case itk::ImageIOBase::USHORT:
+					btkCoutMacro("Scalar type: Unsigned Short");
+					Process< itk::Image< unsigned short,3 >,itk::Image< unsigned char,3 > >(inputFileNames, outputFileNames, maskFileNames,Dimension);
+					break;
 
-                    default:
-                        btkException("Unsupported component type (only short, float or double types are supported) !");
-                }
+				case itk::ImageIOBase::FLOAT:
+					btkCoutMacro("Scalar type: Float");
+					Process< itk::Image< float,3 >,itk::Image< unsigned char,3 > >(inputFileNames, outputFileNames, maskFileNames,Dimension);
+					break;
+
+				case itk::ImageIOBase::DOUBLE:
+					btkCoutMacro("Scalar type: Double");
+					Process< itk::Image< double,3 >,itk::Image< unsigned char,3 > >(inputFileNames, outputFileNames, maskFileNames,Dimension);
+					break;
+
+				default:
+					btkException("Unsupported component type (only short, float or double types are supported) !");
+				}
             }
                 break;
 

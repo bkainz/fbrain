@@ -353,7 +353,7 @@ int main(int argc, char** argv)
 
         // 2. Compute the likelihood of each sequence (S)
 
-        double likelihoodPerSequence[combinations];
+        double* likelihoodPerSequence = new double[combinations];
         double p = 0.0;
         for(int i=0; i<sequences.size();i++)
         {

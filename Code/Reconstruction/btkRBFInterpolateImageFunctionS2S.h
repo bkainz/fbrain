@@ -57,7 +57,7 @@
 
 #include "btkRBFInterpolation.h"
 #include "btkGradientDirection.h"
-#include "ANN.h"
+#include "ANN/ANN.h"
 
 
 

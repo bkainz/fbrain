@@ -193,7 +193,7 @@ namespace btk
 						//In case centroids and greyvalue are the same => impossible to divide by zero
 						if((float)greyImageIterator.Get() - m_Centroids[i] != 0)
 						{
-							currentFuzzyPixel[i] = 1/pow((float)greyImageIterator.Get() - m_Centroids[i], 2.0);
+							currentFuzzyPixel[i] = 1/pow((double)(greyImageIterator.Get() - m_Centroids[i]), 2.0);
 							total += currentFuzzyPixel[i];
 						}
 						else
@@ -258,7 +258,7 @@ namespace btk
 				{
 					for(unsigned int i=0; i<m_ClassNumber; i++)
 					{
-						J += pow((float)greyImageIterator.Get() - m_Centroids[i], 2.0) * fuzzyImageIterator.Get()[i];
+						J += pow((double)(greyImageIterator.Get() - m_Centroids[i]), 2.0) * fuzzyImageIterator.Get()[i];
 					}
 				}
 			}

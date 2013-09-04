@@ -15,6 +15,8 @@ INCLUDE_DIRECTORIES(${Code_SOURCE_DIR}/Tractography)
 INCLUDE_DIRECTORIES(${Code_SOURCE_DIR}/Visualization)
 include_directories(${Code_SOURCE_DIR}/FeatureSelection)
 
+link_directories(${ITK_DIR}/lib/${CMAKE_CFG_INTDIR})
+
 ADD_EXECUTABLE(btkModifyImageUsingLookUpTable btkModifyImageUsingLookUpTable.cxx)
 TARGET_LINK_LIBRARIES(btkModifyImageUsingLookUpTable ${ITK_LIBRARIES})
 

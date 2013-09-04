@@ -53,27 +53,49 @@ double SphericalHarmonics::ComputeBasis(btk::SphericalDirection u, unsigned int 
     // Order coefficient
     double orderCoefficient = 0.0;
 
+#if WIN32
     if(l == 0)
     {
-        orderCoefficient = SphericalHarmonics::m_CoefficientOrder0;
+        orderCoefficient = m_CoefficientOrder0;
     }
     else if(l == 2)
     {
-        orderCoefficient = SphericalHarmonics::m_CoefficientOrder2;
+        orderCoefficient = m_CoefficientOrder2;
     }
     else if(l == 4)
     {
-        orderCoefficient = SphericalHarmonics::m_CoefficientOrder4;
+        orderCoefficient = m_CoefficientOrder4;
     }
     else if(l == 6)
     {
-        orderCoefficient = SphericalHarmonics::m_CoefficientOrder6;
+        orderCoefficient = m_CoefficientOrder6;
     }
     else // if(l == 8)
     {
-        orderCoefficient = SphericalHarmonics::m_CoefficientOrder8;
+        orderCoefficient = m_CoefficientOrder8;
     }
+#else
+	if(l == 0)
+	{
+		orderCoefficient = SphericalHarmonics::m_CoefficientOrder0;
+	}
+	else if(l == 2)
+	{
+		orderCoefficient = SphericalHarmonics::m_CoefficientOrder2;
+	}
+	else if(l == 4)
+	{
+		orderCoefficient = SphericalHarmonics::m_CoefficientOrder4;
+	}
+	else if(l == 6)
+	{
+		orderCoefficient = SphericalHarmonics::m_CoefficientOrder6;
+	}
+	else // if(l == 8)
+	{
+		orderCoefficient = SphericalHarmonics::m_CoefficientOrder8;
 
+#endif
     // Degree coefficient and spherical harmonics
     double degreeCoefficient = 0.0;
     double value = 0.0;

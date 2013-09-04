@@ -77,7 +77,7 @@ double MatrixOperations::Norm(Self::Matrix &matrix)
 
 MatrixOperations::Matrix MatrixOperations::Exponential(Self::Matrix &matrix, unsigned int maxIterations)
 {
-    float j = std::max( 0.0, 1.0 + std::floor(std::log(MatrixOperations::Norm(matrix))/std::log(2)) );
+    float j = std::max( 0.0, 1.0 + std::floor(std::log(MatrixOperations::Norm(matrix))/std::log(2.0)) );
     Self::Matrix A = matrix * std::pow(2,-j);
 
     Self::Matrix D(matrix.Rows(),matrix.Cols()), N(matrix.Rows(),matrix.Cols()), X(matrix.Rows(),matrix.Cols());

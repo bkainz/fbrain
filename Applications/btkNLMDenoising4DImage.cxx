@@ -142,9 +142,9 @@ int main(int argc, char** argv)
     concatenator->SetSpacing( inputImage->GetSpacing()[3] );
 
     Image4DType::IndexType start = input4DRegion.GetIndex();
-    uint numberOf3Dimages = input4DSize[3];
+    unsigned int  numberOf3Dimages = input4DSize[3];
 
-    for (uint i = 0; i < numberOf3Dimages; i++){
+    for (unsigned int  i = 0; i < numberOf3Dimages; i++){
       std::cout<<"Filtering the 3D image : "<<i+1<<"\n";
 
       start[3] = i;

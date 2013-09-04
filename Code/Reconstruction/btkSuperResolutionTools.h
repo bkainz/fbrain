@@ -153,7 +153,7 @@ void SuperResolutionTools::InitializePSF(SuperResolutionDataManager & data)
   //set the correct number of PSF (one PSF for one LR image -> this allows us to use images with different LR resolution)
   m_PSF.resize(data.m_inputLRImages.size());
   
-  for(uint i=0; i != m_PSF.size(); i++){
+  for(unsigned int  i=0; i != m_PSF.size(); i++){
     
     // 1- build the boxcar PSF in LR space (one anisotropic voxel)
     itkPointer LRPSF = itkImage::New();
@@ -368,8 +368,8 @@ void SuperResolutionTools::HComputation(SuperResolutionDataManager & data)
   m_X.fill(0.0);
   
   //linear index : an integer value corresponding to (x,y,z) triplet coordinates (ITK index)
-  uint lrLinearIndex = 0;
-  uint hrLinearIndex = 0;
+  unsigned int  lrLinearIndex = 0;
+  unsigned int  hrLinearIndex = 0;
 
   //Temporary variables
   itkImage::IndexType lrIndex;  //index of the current voxel in the LR image
@@ -394,7 +394,7 @@ void SuperResolutionTools::HComputation(SuperResolutionDataManager & data)
   itkImage::SizeType  hrSize  = data.m_inputHRImage->GetLargestPossibleRegion().GetSize();
   
   std::cout<<"loop over LR images\n";
-  for(uint i=0; i<data.m_inputLRImages.size(); i++){
+  for(unsigned int  i=0; i<data.m_inputLRImages.size(); i++){
     std::cout<<"Adding image "<<i+1<<"\n";
     
     //Get the size of the current LR image
@@ -526,7 +526,7 @@ void SuperResolutionTools::HComputation(SuperResolutionDataManager & data)
   } //end of loop over the set of LR images
   
   // Normalize m_H
-  for(uint i = 0; i < m_H.rows(); i++){
+  for(unsigned int  i = 0; i < m_H.rows(); i++){
     
     double sum = m_H.sum_row(i);
     
@@ -551,7 +551,7 @@ void SuperResolutionTools::UpdateX(SuperResolutionDataManager & data)
   std::cout<<"Update x\n";
   m_X.fill(0.0);
   itkImage::IndexType hrIndex;
-  uint hrLinearIndex = 0;
+  unsigned int hrLinearIndex = 0;
   itkImage::SizeType  hrSize  = data.m_currentHRImage->GetLargestPossibleRegion().GetSize();
 
   itkIteratorWithIndex itHRImage(data.m_currentHRImage,data.m_currentHRImage->GetLargestPossibleRegion());
@@ -577,9 +577,9 @@ void SuperResolutionTools::SimulateLRImages(SuperResolutionDataManager & data)
   
   //Temporary variables
   itkImage::IndexType lrIndex;  //index of the current voxel in the LR image
-  uint lrLinearIndex = 0;
+  unsigned int lrLinearIndex = 0;
 
-  for(uint i=0; i<data.m_inputLRImages.size(); i++){
+  for(unsigned int i=0; i<data.m_inputLRImages.size(); i++){
     //duplicate the LR input image into the simulated LR images to keep all header information
     itkDuplicator::Pointer duplicator = itkDuplicator::New();
     duplicator->SetInputImage( data.m_inputLRImages[i] );
@@ -639,7 +639,7 @@ double SuperResolutionTools::IteratedBackProjection(SuperResolutionDataManager &
   std::vector<itkPointer>   errorImages;            //difference image between simulated images and observed images.
   errorImages.resize(data.m_inputLRImages.size());
   
-  for(uint i=0; i<data.m_inputLRImages.size(); i++){
+  for(unsigned int i=0; i<data.m_inputLRImages.size(); i++){
 
     //compute the difference between LR input and the simulated LR image
     itkSubtractImageFilter::Pointer subtractFilter = itkSubtractImageFilter::New ();
@@ -704,7 +704,7 @@ double SuperResolutionTools::IteratedBackProjection(SuperResolutionDataManager &
     std::cout<<"Averaging the error maps (obtained for each LR image)\n";
       data.m_outputHRImage->FillBuffer(0);
 
-      for(uint i=0; i<data.m_inputLRImages.size(); i++)
+      for(unsigned int i=0; i<data.m_inputLRImages.size(); i++)
       {
         //Add the interpolated differences
         itkAddImageFilter::Pointer addFilter = itkAddImageFilter::New ();
@@ -723,7 +723,7 @@ double SuperResolutionTools::IteratedBackProjection(SuperResolutionDataManager &
         {
           itkImage::IndexType p = itImage.GetIndex();
           std::vector<double>  v;
-          for(uint i=0; i<data.m_inputLRImages.size(); i++)
+          for(unsigned int i=0; i<data.m_inputLRImages.size(); i++)
             v.push_back(errorImages[i]->GetPixel(p));
           std::sort(v.begin(), v.end());
           
@@ -846,7 +846,7 @@ void SuperResolutionTools::CreateMaskHRImage(SuperResolutionDataManager & data)
   itkBSplineInterpolator::Pointer bsInterpolator = itkBSplineInterpolator::New();
   bsInterpolator->SetSplineOrder(interpolationOrder);
   
-  for(uint i=0; i<data.m_inputLRImages.size(); i++){
+  for(unsigned int i=0; i<data.m_inputLRImages.size(); i++){
   
     //interpolate the LR mask 
     itkResampleFilter::Pointer resample = itkResampleFilter::New();
@@ -929,8 +929,8 @@ void SuperResolutionTools::SRUsingPseudoInverse(SuperResolutionDataManager & dat
   
   
   //linear index : an integer value corresponding to (x,y,z) triplet coordinates (ITK index)
-  uint hrLinearIndex = 0;
-  uint hrLinearIndexTmp = 0;
+  unsigned int hrLinearIndex = 0;
+  unsigned int hrLinearIndexTmp = 0;
 
   //Temporary variables
   itkImage::IndexType hrIndex;     //index in HR image
@@ -951,16 +951,16 @@ void SuperResolutionTools::SRUsingPseudoInverse(SuperResolutionDataManager & dat
     //Compute the corresponding linear index of lrIndex
     hrLinearIndex = hrIndex[0] + hrIndex[1]*hrSize[0] + hrIndex[2]*hrSize[0]*hrSize[1];
     
-    for(uint i=0; i<size[0]; i++)
-    for(uint j=0; j<size[1]; j++)
-    for(uint k=0; k<size[2]; k++)
+    for(unsigned int i=0; i<size[0]; i++)
+    for(unsigned int j=0; j<size[1]; j++)
+    for(unsigned int k=0; k<size[2]; k++)
     {
       
       //index du voisin de hrIndex
       hrIndexTmp[0] = hrIndex[0] - size[0]/2 +i;
       hrIndexTmp[1] = hrIndex[1] - size[0]/2 +j;
       hrIndexTmp[2] = hrIndex[2] - size[0]/2 +k;
-      
+     // d
       hrLinearIndexTmp = hrIndexTmp[0] + hrIndexTmp[1]*hrSize[0] + hrIndexTmp[2]*hrSize[0]*hrSize[1];
       
       //index dans le laplacianPatch
@@ -979,9 +979,9 @@ void SuperResolutionTools::SRUsingPseudoInverse(SuperResolutionDataManager & dat
   
   std::ofstream myfile_H;
   myfile_H.open ("matrix_H.txt");
-  for(uint i = 0; i < m_H.rows(); i++)
+  for(unsigned int i = 0; i < m_H.rows(); i++)
   {
-    for(uint j = 0; j < m_H.cols(); j++)
+    for(unsigned int j = 0; j < m_H.cols(); j++)
     {
       myfile_H << m_H(i,j) <<" ";
     }
@@ -991,9 +991,9 @@ void SuperResolutionTools::SRUsingPseudoInverse(SuperResolutionDataManager & dat
 
   std::ofstream myfile_D;
   myfile_D.open ("matrix_D.txt");
-  for(uint i = 0; i < D.rows(); i++)
+  for(unsigned int i = 0; i < D.rows(); i++)
   {
-    for(uint j = 0; j < D.cols(); j++)
+    for(unsigned int j = 0; j < D.cols(); j++)
     {
       myfile_D << D(i,j) <<" ";
     }
@@ -1016,14 +1016,14 @@ void SuperResolutionTools::SRUsingPseudoInverse(SuperResolutionDataManager & dat
   vnl_sparse_matrix<double>  invM(n,n);    
   vnl_sparse_lu lu(M,vnl_sparse_lu::quiet);
 
-  for(uint i=0; i<n; i++) 
+  for(unsigned int i=0; i<n; i++) 
   {    
     std::cout<<"current line:"<<i<<std::endl;
     vnl_vector<double> b(n, 0.0), x(n);
     b(i)=1;
     lu.solve(b, &x);
     std::cout<<"fill the inverse matrix"<<std::endl;
-    for(uint j=0; j<n; j++)
+    for(unsigned int j=0; j<n; j++)
       invM(i,j)=x(j);
   }  
   

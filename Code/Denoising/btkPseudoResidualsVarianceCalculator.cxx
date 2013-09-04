@@ -50,8 +50,10 @@
 namespace btk
 {
 
+#ifndef WIN32
 const double PseudoResidualsVarianceCalculator::m_1over6;
 const double PseudoResidualsVarianceCalculator::m_sqrt6over7;
+#endif
 
 //-------------------------------------------------------------------------------------------------
 

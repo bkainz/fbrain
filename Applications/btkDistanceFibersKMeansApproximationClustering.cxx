@@ -382,7 +382,7 @@ for( int t = 0; t < sp; ++t )
     doubleArray->SetNumberOfTuples(number_fiber);
     for( int r = 0; r < number_fiber; ++r )
     { 
-      doubleArray->SetValue( r, Distance_matrix(r,idx(t))*pow(sp*Score(idx(t)),-0.5));
+      doubleArray->SetValue( r, Distance_matrix(r,idx(t))*pow((double)(sp*Score(idx(t))),-0.5));
     }
     inputData->AddColumn( doubleArray );
         

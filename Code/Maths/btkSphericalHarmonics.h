@@ -38,10 +38,21 @@
 #define BTK_SPHERICAL_HARMONICS_H
 
 // STL includes
-#include "cmath"
+#define _USE_MATH_DEFINES
+#include <cmath>
+#include <math.h>
 
 // Local includes
 #include "btkSphericalDirection.h"
+
+#if WIN32
+		static const double m_CoefficientOrder0 = 0.282094791773878;
+		static const double m_CoefficientOrder2 = 0.630783130505040;
+		static const double m_CoefficientOrder4 = 0.846284375321634;
+		static const double m_CoefficientOrder6 = 1.01710723628205;
+		static const double m_CoefficientOrder8 = 1.16310662292032;
+#endif
+
 
 namespace btk
 {
@@ -64,12 +75,14 @@ class SphericalHarmonics
          */
         static double ComputeBasis(btk::SphericalDirection u, unsigned int l, int m);
 
+#ifndef WIN32
     private:
         static const double m_CoefficientOrder0 = 0.282094791773878;
         static const double m_CoefficientOrder2 = 0.630783130505040;
         static const double m_CoefficientOrder4 = 0.846284375321634;
         static const double m_CoefficientOrder6 = 1.01710723628205;
         static const double m_CoefficientOrder8 = 1.16310662292032;
+#endif
 };
 
 } // namespace btk

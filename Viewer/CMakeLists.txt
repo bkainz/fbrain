@@ -10,6 +10,7 @@ INCLUDE_DIRECTORIES(
     ${Code_SOURCE_DIR}/Transformations
     ${Code_SOURCE_DIR}/Visualization
 )
+link_directories(${ITK_DIR}/lib/${CMAKE_CFG_INTDIR})
 
 ADD_EXECUTABLE( btkSlicesMotionViewer btkSlicesMotionViewer.cxx
 ${Code_SOURCE_DIR}/Visualization/btkRenderPolydata.cxx

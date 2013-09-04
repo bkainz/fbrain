@@ -36,8 +36,10 @@
 #ifndef BTK_MATH_FUNCTIONS_H
 #define BTK_MATH_FUNCTIONS_H
 
-#include "cmath"
-#include "cstdlib"
+#define _USE_MATH_DEFINES
+#include <cmath>
+#include <math.h>
+#include <cstdlib>
 
 #include "btkMacro.h"
 

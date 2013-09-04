@@ -40,7 +40,7 @@
 namespace btk
 {
 
-SincPSF::SincPSF():Superclass::PSF()
+SincPSF::SincPSF() : PSF()
 {
 
     m_PsfImage = ImageType::New();

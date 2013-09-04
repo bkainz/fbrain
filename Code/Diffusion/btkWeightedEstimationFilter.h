@@ -91,6 +91,8 @@ class WeightedEstimationFilter : public itk::ImageToImageFilter< DiffusionSequen
         typedef btk::DiffusionSequence::GradientTable                           GradientTableType;
         typedef std::vector<float>                                             VectorType;
 
+		typedef  btk::DiffusionSequence											OutputImageType;
+
 
         itkNewMacro(Self);
         itkTypeMacro(WeightedEstimationFilter,itk::ImageToImageFilter);

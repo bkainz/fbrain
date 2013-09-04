@@ -47,7 +47,7 @@ void  MotionCorrectionSliceBySliceAffineFilter::Initialize()
 void  MotionCorrectionSliceBySliceAffineFilter::DoRegistration()
 {
 
-    unsigned int im = 0;
+    int im = 0;
     #pragma omp parallel for private(im) schedule(dynamic)
 
     for(im = 0; im< SuperClass::m_ImagesLR.size(); im++)

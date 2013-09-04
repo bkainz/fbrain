@@ -366,7 +366,7 @@ OutlierCorrectionFilter<TImage>::CorrectOutliers(SequenceConstPointer InputSeque
         if(m_Method.compare("SH") ==0)
         {
             unsigned int nb_loop=0;
-            unsigned int i;
+            int i;
 
             #pragma omp parallel for private(i) schedule(dynamic)
             for(i=0; i< NumberOfSlices; i++)

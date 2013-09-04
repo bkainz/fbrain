@@ -35,7 +35,10 @@
 
 #include "btkImportanceDensity.h"
 
-
+#define _USE_MATH_DEFINES
+#include <cmath>
+#include <math.h>
+#include <cstdlib>
 // STL includes
 #include "cfloat"
 

@@ -45,6 +45,7 @@
 // Local includes
 #include "btkDiffusionModel.h"
 #include "btkSphericalHarmonicsDiffusionDecompositionFilter.h"
+#include "btkMacro.h"
 
 namespace btk
 {
@@ -72,13 +73,12 @@ class OrientationDiffusionFunctionModel : public btk::DiffusionModel
         itkNewMacro(Self);
 
         itkTypeMacro(OrientationDiffusionFunctionModel,btk::DiffusionModel);
-
         btkSetMacro(BValue, unsigned int);
-        btkGetMacro(BValue, unsigned int);
+		virtual unsigned int GetBValue_() { return this->m_BValue;};
+       // btkGetMacro(BValue, unsigned int);
 
         btkSetMacro(InputModelImage, ModelImage::Pointer);
         btkGetMacro(InputModelImage, ModelImage::Pointer);
-
         /**
          * @brief Update the process.
          */

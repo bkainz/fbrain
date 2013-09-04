@@ -320,9 +320,13 @@ MutualInformation< TImage >
         btkCoutMacro("  Return non noramlized mutual information (default) ... ")
 
     }
-
+#if WIN32
+    if(MutualInformation != MutualInformation)
+        MutualInformation=0.0;
+#else
     if(std::isnan(MutualInformation))
         MutualInformation=0.0;
+#endif
 
     return -MutualInformation;
 }

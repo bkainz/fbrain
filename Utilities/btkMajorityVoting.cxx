@@ -81,7 +81,7 @@ int main( int argc, char *argv[] )
   labelImages.resize(label_file.size());
 
   //Reading input data
-  for(uint i=0;i<label_file.size();i++){
+  for(unsigned int  i=0;i<label_file.size();i++){
     ReaderType::Pointer reader = ReaderType::New();
     reader->SetFileName( label_file[i]  );
     reader->Update();
@@ -116,7 +116,7 @@ int main( int argc, char *argv[] )
 
 
   int x,y,z;
-  uint n = labelImages.size();
+  unsigned int n = labelImages.size();
 
   #pragma omp parallel for private(x,y,z) schedule(dynamic)
   for(z=0; z < (int)size[2]; z++)
@@ -133,7 +133,7 @@ int main( int argc, char *argv[] )
         std::map<InputPixelType, float> map;
         float weight = 1.0;
 
-        for(uint i=0; i < n; i++){
+        for(unsigned int  i=0; i < n; i++){
             label = labelImages[i]->GetPixel(p);
             map[label] += weight;
         }

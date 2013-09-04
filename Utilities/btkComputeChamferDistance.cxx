@@ -113,9 +113,9 @@ void chamfer_distance(itk::Image<short,3>::Pointer & inputImage, itk::Image<shor
   std::cout<<"Image size is : "<<size[0]<<" "<<size[1]<<" "<<size[2]<<"\n";
   itk::Image<short,3>::IndexType pixelIndex;
 
-  for(uint k=radius; k<size[2]-radius; k++)
-  for(uint j=radius; j<size[1]-radius; j++)
-  for(uint i=radius; i<size[0]-radius; i++)
+  for(unsigned int  k=radius; k<size[2]-radius; k++)
+  for(unsigned int  j=radius; j<size[1]-radius; j++)
+  for(unsigned int  i=radius; i<size[0]-radius; i++)
   {
     std::vector<short> vec;
 
@@ -141,9 +141,9 @@ void chamfer_distance(itk::Image<short,3>::Pointer & inputImage, itk::Image<shor
   int d1=3,d2=4,d3=5;
 
 
-  for(uint k=0; k<size[2]; k++)
-  for(uint j=0; j<size[1]; j++)
-  for(uint i=0; i<size[0]; i++)
+  for(unsigned int  k=0; k<size[2]; k++)
+  for(unsigned int  j=0; j<size[1]; j++)
+  for(unsigned int  i=0; i<size[0]; i++)
   {
     pixelIndex[0] = i;
     pixelIndex[1] = j;
@@ -156,9 +156,9 @@ void chamfer_distance(itk::Image<short,3>::Pointer & inputImage, itk::Image<shor
 
   std::cout<<"------ Forward pass ------\n";
 
-  for(uint k=1; k<size[2]-1; k++)
-  for(uint j=1; j<size[1]-1; j++)
-  for(uint i=1; i<size[0]-1; i++)
+  for(unsigned int  k=1; k<size[2]-1; k++)
+  for(unsigned int  j=1; j<size[1]-1; j++)
+  for(unsigned int  i=1; i<size[0]-1; i++)
   {
     pixelIndex[0] = i;    pixelIndex[1] = j;    pixelIndex[2] = k;
     dist[0]=outputImage->GetPixel(pixelIndex);
@@ -204,9 +204,9 @@ void chamfer_distance(itk::Image<short,3>::Pointer & inputImage, itk::Image<shor
 
   std::cout<<"------ Backward pass ------\n";
 
-  for(uint k=size[2]-2; k>0; k--)
-  for(uint j=size[1]-2; j>0; j--)
-  for(uint i=size[0]-2; i>0; i--)
+  for(unsigned int k=size[2]-2; k>0; k--)
+  for(unsigned int j=size[1]-2; j>0; j--)
+  for(unsigned int i=size[0]-2; i>0; i--)
   {
     pixelIndex[0] = i;    pixelIndex[1] = j;    pixelIndex[2] = k;
     dist[0]=outputImage->GetPixel(pixelIndex);
@@ -250,8 +250,8 @@ void chamfer_distance(itk::Image<short,3>::Pointer & inputImage, itk::Image<shor
 
 
   }
-  for(uint j=0; j<size[1]; j++)
-  for(uint i=0; i<size[0]; i++)
+  for(unsigned int j=0; j<size[1]; j++)
+  for(unsigned int i=0; i<size[0]; i++)
   {
     pixelIndex[0] = i;    pixelIndex[1] = j;    pixelIndex[2] = 1;
     short tmp = outputImage->GetPixel(pixelIndex);
@@ -262,8 +262,8 @@ void chamfer_distance(itk::Image<short,3>::Pointer & inputImage, itk::Image<shor
     pixelIndex[2] = size[2]-1;
     outputImage->SetPixel(pixelIndex, tmp);
   }
-  for(uint k=0; k<size[2]; k++)
-  for(uint i=0; i<size[0]; i++)
+  for(unsigned int k=0; k<size[2]; k++)
+  for(unsigned int i=0; i<size[0]; i++)
   {
     pixelIndex[0] = i;    pixelIndex[1] = 1;    pixelIndex[2] = k;
     short tmp = outputImage->GetPixel(pixelIndex);
@@ -274,8 +274,8 @@ void chamfer_distance(itk::Image<short,3>::Pointer & inputImage, itk::Image<shor
     pixelIndex[1] = size[1]-1;
     outputImage->SetPixel(pixelIndex, tmp);
   }
-  for(uint k=0; k<size[2]; k++)
-  for(uint j=0; j<size[1]; j++)
+  for(unsigned int k=0; k<size[2]; k++)
+  for(unsigned int j=0; j<size[1]; j++)
   {
     pixelIndex[0] = 1;    pixelIndex[1] = j;    pixelIndex[2] = k;
     short tmp = outputImage->GetPixel(pixelIndex);
@@ -286,9 +286,9 @@ void chamfer_distance(itk::Image<short,3>::Pointer & inputImage, itk::Image<shor
     pixelIndex[0] = size[0]-1;
     outputImage->SetPixel(pixelIndex, tmp);
   }
-  for(uint k=0; k<size[2]; k++)
-  for(uint j=0; j<size[1]; j++)
-  for(uint i=0; i<size[0]; i++)
+  for(unsigned int k=0; k<size[2]; k++)
+  for(unsigned int j=0; j<size[1]; j++)
+  for(unsigned int i=0; i<size[0]; i++)
   {
     pixelIndex[0] = i;    pixelIndex[1] = j;    pixelIndex[2] = k;
     short tmp = outputImage->GetPixel(pixelIndex);

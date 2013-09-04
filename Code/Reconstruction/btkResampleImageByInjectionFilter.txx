@@ -196,7 +196,8 @@ ResampleImageByInjectionFilter<TInputImage, TOutputImage, TInterpolatorPrecision
   typename MaskType::Pointer mask = MaskType::New();
   mask -> SetImage (m_ImageMask);
 
-  unsigned int im;
+  {
+  int im;
   #pragma omp parallel for private(im) schedule(dynamic)
 
   for(im = 0; im < m_ImageArray.size(); im++)
@@ -367,6 +368,7 @@ ResampleImageByInjectionFilter<TInputImage, TOutputImage, TInterpolatorPrecision
 
     }
 
+  }
   }
 
   // Creates output image

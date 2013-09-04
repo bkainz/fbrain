@@ -55,7 +55,7 @@ PriorDensity::PriorDensity(double concentration) : m_Concentration(concentration
 
 void PriorDensity::Initialize()
 {
-    m_NormalizationCoefficient = std::log(m_Concentration / (m_2pi * (std::exp(m_Concentration) - std::exp(-m_Concentration))));
+    m_NormalizationCoefficient = std::log(m_Concentration / (6.283185307179586 * (std::exp(m_Concentration) - std::exp(-m_Concentration))));
     m_InverseConcentration     = 1.0 / m_Concentration;
     m_SimulationTerm           = std::exp(-m_Concentration);
     m_SimulationCoefficient    = m_Concentration * ((2.0/m_Concentration) * (std::exp(m_Concentration) - std::exp(-m_Concentration))/2.0);
@@ -75,7 +75,7 @@ GradientDirection PriorDensity::Simulate(GradientDirection vkm1)
     // Simulate the vMF distribution with mean (0,0,1)
     double        y = static_cast< double >(std::rand()) / static_cast< double >(RAND_MAX);
     double        w = m_InverseConcentration * std::log( m_SimulationTerm + m_SimulationCoefficient * y);
-    double    theta = ( static_cast< double >(std::rand()) / static_cast< double >(RAND_MAX)) * m_2pi;
+    double    theta = ( static_cast< double >(std::rand()) / static_cast< double >(RAND_MAX)) * 6.283185307179586;
     double constant = std::sqrt(1-w*w);
 
     GradientDirection x(constant*std::cos(theta), constant*std::sin(theta), w);

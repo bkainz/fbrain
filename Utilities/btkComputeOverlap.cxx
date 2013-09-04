@@ -81,9 +81,9 @@ int main (int argc, char* argv[])
   if(minLabel == -1) minLabel = minmax->GetMinimum();
   if(maxLabel == -1) maxLabel = minmax->GetMaximum();
 
-  std::map<PixelType,uint> intersection;          //intersection between the 2 segmentations (i.e. true positive)
-  std::map<PixelType,uint> cardinal_ground_truth;
-  std::map<PixelType,uint> cardinal_input_image;
+  std::map<PixelType,unsigned int> intersection;          //intersection between the 2 segmentations (i.e. true positive)
+  std::map<PixelType,unsigned int> cardinal_ground_truth;
+  std::map<PixelType,unsigned int> cardinal_input_image;
 
   typedef itk::ImageRegionIterator< ImageType > Iterator;
 
@@ -102,7 +102,7 @@ int main (int argc, char* argv[])
   
   }
 
-  std::map<PixelType, uint>::iterator cgtIt; //iterator over the map "cardinal_ground_truth"
+  std::map<PixelType, unsigned int>::iterator cgtIt; //iterator over the map "cardinal_ground_truth"
   
   //std::cout<<"label | kappa index | overlap |\n";
   for(int i = minLabel; i < maxLabel + 1; i++){

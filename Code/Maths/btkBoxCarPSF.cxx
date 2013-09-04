@@ -38,7 +38,7 @@
 namespace btk
 {
 
-BoxCarPSF::BoxCarPSF(): Superclass::PSF()
+BoxCarPSF::BoxCarPSF() : PSF()
 {
 
     m_PsfImage = ImageType::New();

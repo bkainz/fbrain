@@ -10,6 +10,7 @@ INCLUDE_DIRECTORIES(
 
 )
 
+link_directories(${ITK_DIR}/lib/${CMAKE_CFG_INTDIR})
 
 # ---- Denoising ------------------------------------------------------------------------
 

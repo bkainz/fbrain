@@ -77,7 +77,8 @@ void WeightedEstimationFilter::SetDiffusionDataset(DatasetPointer dataset)
 
 void WeightedEstimationFilter::AllocateOutputs()
 {
-    ////////////////////////////////////////////////////////////////////////////
+#ifndef WIN32 //TODO
+	////////////////////////////////////////////////////////////////////////////
     //
     // Allocate memory for output image
     //
@@ -96,6 +97,7 @@ void WeightedEstimationFilter::AllocateOutputs()
     m_OutputSequence->SetDirection(sequenceDirection);
     m_OutputSequence->Allocate();
     m_OutputSequence->FillBuffer(0);
+#endif
 
 }
 
@@ -128,6 +130,7 @@ void WeightedEstimationFilter::ThreadedGenerateData(const OutputImageRegionType 
 
         DiffusionSequence::IndexType queryIndex4D = outIt.GetIndex();
         DiffusionSequence::PointType queryPoint4D;
+
         m_OutputSequence->TransformIndexToPhysicalPoint(queryIndex4D,queryPoint4D);
 
         Point3DType queryPoint3D;

@@ -44,6 +44,14 @@
 #include "btkDiffusionModel.h"
 #include "btkDiffusionSignal.h"
 
+
+#if WIN32
+        /**
+         * @brief Precomputed constant.
+         */
+        static const double m_logSqrt2Pi = 0.918938533204673;
+#endif
+
 namespace btk
 {
 
@@ -97,11 +105,12 @@ class LikelihoodDensity
          * @brief Diffusion signal.
          */
         DiffusionSignal::Pointer m_Signal;
-
+#ifndef WIN32
         /**
          * @brief Precomputed constant.
          */
         static const double m_logSqrt2Pi = 0.918938533204673;
+#endif
 };
 
 } // namespace btk

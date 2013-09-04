@@ -47,7 +47,7 @@ void  MotionCorrectionSliceBySliceEulerFilter::Initialize()
 void  MotionCorrectionSliceBySliceEulerFilter::DoRegistration()
 {
 
-   unsigned int im;
+   int im;
     #pragma omp parallel for private(im) schedule(dynamic)
 
     for(im = 0; im< SuperClass::m_ImagesLR.size(); im++)

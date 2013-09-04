@@ -109,8 +109,9 @@ class DiffusionSlice : public itk::Image< short, 3 >
         /**
          * @brief Set/Get the B-value of the slice.
          */
-        btkSetMacro(BValue, BValueType);
-        btkGetMacro(BValue, BValueType);
+        btkSetMacro(BValue, unsigned int);
+		virtual unsigned int GetBValue_() { return this->m_BValue;};
+        //btkGetMacro(BValue_, unsigned int);
 
         /**
          * @brief Set Outliers status of the slice.

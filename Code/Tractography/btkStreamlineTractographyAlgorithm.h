@@ -36,6 +36,12 @@
 #ifndef BTK_STREAMLINE_TRACTOGRAPHY_ALGORITHM_H
 #define BTK_STREAMLINE_TRACTOGRAPHY_ALGORITHM_H
 
+
+#define _USE_MATH_DEFINES
+#include <cmath>
+#include <math.h>
+#include <cstdlib>
+
 // ITK includes
 #include "itkMacro.h"
 #include "itkSmartPointer.h"

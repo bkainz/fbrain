@@ -390,7 +390,7 @@ int main( int argc, char *argv[] )
     }
   }
 
-  unsigned int im = numberOfImages;
+  int im = numberOfImages;
   float previousMetric = 0.0;
   float currentMetric = 0.0;
 

@@ -53,7 +53,7 @@ void MotionCorrection3DAffineFilter::Initialize()
 void MotionCorrection3DAffineFilter::DoRegistration()
 {
 
-    unsigned int im = 0;
+    int im = 0;
 
 
     #pragma omp parallel for private(im) schedule(dynamic)

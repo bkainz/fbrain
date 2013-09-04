@@ -66,7 +66,7 @@ VonMisesFisherProbabilityDensity::VonMisesFisherProbabilityDensity(double kappa)
 
 void VonMisesFisherProbabilityDensity::Initialize()
 {
-    m_NormalizationCoefficient = m_Kappa / (m_2pi * (std::exp(m_Kappa) - std::exp(-m_Kappa)));
+    m_NormalizationCoefficient = m_Kappa / (6.283185307179586 * (std::exp(m_Kappa) - std::exp(-m_Kappa)));
     m_InverseKappa             = 1.0 / m_Kappa;
     m_SimulationTerm           = std::exp(-m_Kappa);
     m_SimulationCoefficient    = m_Kappa * ((2.0/m_Kappa) * (std::exp(m_Kappa) - std::exp(-m_Kappa))/2.0);
@@ -86,7 +86,7 @@ GradientDirection VonMisesFisherProbabilityDensity::Simulate()
     // Simulate the vMF distribution with mean (0,0,1)
     double        y = static_cast< double >(std::rand()) / static_cast< double >(RAND_MAX);
     double        w = m_InverseKappa * std::log( m_SimulationTerm + m_SimulationCoefficient * y);
-    double    theta = ( static_cast< double >(std::rand()) / static_cast< double >(RAND_MAX)) * m_2pi;
+    double    theta = ( static_cast< double >(std::rand()) / static_cast< double >(RAND_MAX)) * 6.283185307179586;
     double constant = std::sqrt(1-w*w);
 
     GradientDirection x(constant*std::cos(theta), constant*std::sin(theta), w);
